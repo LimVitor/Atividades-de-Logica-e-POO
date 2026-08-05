@@ -7,6 +7,7 @@ botao9.addEventListener('click', () => {
   for (let n = 0; n < 20; n++) {
     let nome = prompt('Digite um nome');
     lista.push(nome);
+    lista.sort();
   }
   alert(`${lista} (${lista.length})`);
 
