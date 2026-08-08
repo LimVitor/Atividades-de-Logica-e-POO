@@ -2,11 +2,12 @@ class funcionario {
   constructor(nome, cargo, salario) {
     this.nome = nome;
     this.cargo = cargo;
-    this.#salario = salario;
+    this.salario = salario;
   }
 }
 
 class desenvolvedor extends funcionario {
+   #salario;
   constructor(nome, cargo, salario, linguagem) {
     super(nome, cargo, salario);
     this.linguagem = linguagem;
@@ -17,23 +18,24 @@ class desenvolvedor extends funcionario {
   }
 
   verSalario() {
-    alert(`R$${this.#salario}`);
+    alert(`R$${this.salario}`);
   }
 
   calcularBonus() {
     let extra = parseFloat(prompt('Digite o valor do bônus'));
-    let bonus = extra + this.#salario;
+    let bonus = extra + this.salario;
     alert(`Salário final de: R$${bonus}`);
   }
 
   aumentarSalario(valor) {
-    let novoSalario = this.#salario + valor;
-    this.#salario = novoSalario;
-    alert(`O salário aumentou para R$${this.#salario}`);
+    let novoSalario = this.salario + valor;
+    this.salario = novoSalario;
+    alert(`O salário aumentou para R$${this.salario}`);
   }
 }
 
 class designer extends funcionario {
+   #salario;
   constructor(nome, cargo, salario, ferramenta) {
     super(nome, cargo, salario);
     this.ferramenta = ferramenta;
@@ -44,19 +46,19 @@ class designer extends funcionario {
   }
 
   verSalario() {
-    alert(`R$${this.#salario}`);
+    alert(`R$${this.salario}`);
   }
 
   calcularBonus() {
     let extra = parseFloat(prompt('Digite o valor do bônus'));
-    let bonus = extra + this.#salario;
+    let bonus = extra + this.salario;
     alert(`Salário final de: R$${bonus}`);
   }
 
   aumentarSalario(valor) {
-    let novoSalario = this.#salario + valor;
-    this.#salario = novoSalario;
-    alert(`O salário aumentou para R$${this.#salario}`);
+    let novoSalario = this.salario + valor;
+    this.salario = novoSalario;
+    alert(`O salário aumentou para R$${this.salario}`);
   }
 }
 
