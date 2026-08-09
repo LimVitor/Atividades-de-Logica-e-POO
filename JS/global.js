@@ -12,3 +12,5 @@ import './POO/atividadePOO1.js';
 import './POO/atividadePOO2.js';
 
 import './changeTab.js';
+
+import './anim.js'

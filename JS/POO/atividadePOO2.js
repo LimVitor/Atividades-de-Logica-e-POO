@@ -75,10 +75,12 @@ class locadora {
   }
 
   removerVeiculo(modelo) {
-  
-     this.listaVeiculos = this.listaVeiculos.filter((i) => i !== modelo);
-      alert(`Carrinho: ${this.listaVeiculos}`);
-   
+    if (marcaCarro === modelo) {
+      this.listaVeiculos.filter((i) => i !== marcaCarro);
+      alert(`${this.listaVeiculos} foi removido`);
+    } else {
+      alert('Item não encontrado.');
+    }
   }
 }
 
