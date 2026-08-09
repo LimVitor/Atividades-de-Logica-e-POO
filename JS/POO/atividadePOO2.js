@@ -17,14 +17,14 @@ class Carro extends Veiculo {
       `Esse carro é um ${this.modelo}, ${this.portas} portas, da marca ${this.marca}, sua diária é de R$${this.diaria}.`,
     );
   }
+  getDiaria() {
+    return this.diaria;
+    alert(`Diária = R$${this.diaria}`);
+  }
 
   calcularAluguel(dias) {
     let aluguel = this.diaria * dias;
-  }
-  getDiaria() {
-    this.diaria = parseFloat(prompt('Digita o valor da diária'));
-    return diaria;
-    alert(`Diária ${diaria}`);
+    alert(`Aluguel de R$${aluguel}`);
   }
 }
 
@@ -40,14 +40,14 @@ class Moto extends Veiculo {
     );
   }
 
-  calcularAluguel(dias) {
-    let aluguel = this.diaria * dias;
+  getDiaria() {
+    return this.diaria;
+    alert(`Diária = R$${this.diaria}`);
   }
 
-  getDiaria() {
-    this.diaria = parseFloat(prompt('Digita o valor da diária'));
-    return diaria;
-    alert(`Diária ${diaria}`);
+  calcularAluguel(dias) {
+    let aluguel = this.diaria * dias;
+    alert(`Aluguel de R$${aluguel}`);
   }
 }
 
@@ -66,22 +66,19 @@ class locadora {
   }
 
   listarVeiculos() {
-    alert(this.listaVeiculos);
+    alert(`Carrinho: ${this.listaVeiculos}`);
   }
 
   calcularTotal(dias) {
-    let totalDias = Carroca.dias + Motoca.dias;
+    let totalDias = (Carroca.diaria + Motoca.diaria) * dias;
     alert(`Total do aluguel: R$${totalDias}`);
   }
 
   removerVeiculo(modelo) {
-    const item = alert(prompt('Qual modelo deseja remover?'));
-    if (item === modelo) {
-      listaVeiculos.filter((i) => i !== item);
-      alert(listaVeiculos);
-    } else {
-      alert('Item não encontrado.');
-    }
+  
+     this.listaVeiculos = this.listaVeiculos.filter((i) => i !== modelo);
+      alert(`Carrinho: ${this.listaVeiculos}`);
+   
   }
 }
 
@@ -90,7 +87,7 @@ const local = new locadora();
 const botao12 = document.getElementById('atividadePOO2');
 
 botao12.addEventListener('click', () => {
-  marcaEscolhida = prompt('Escolha a marca do Veiculo: BYD | Kawasaki');
+  let marcaEscolhida = prompt('Escolha a marca do Veiculo: BYD | Kawasaki');
 
   if (marcaEscolhida === Carroca.marca) {
     Carroca.descricao();
@@ -104,21 +101,34 @@ botao12.addEventListener('click', () => {
 
   local.listarVeiculos();
 
-  let consuta = parseInt(
+  let consulta = parseInt(
     prompt(
-      'Digite: 1 - p/ Calcular aluguel | 2 - p/ Ver total da locadora | 3 - p/ Remover item',
+      'Digite: 1 - p/ Calcular aluguel | 2 - p/ Ver total da locadora | 3 - p/ Remover item | 4 - p/ Sair',
     ),
   );
 
   switch (consulta) {
     case 1:
-      
+      let periodo = parseInt(prompt('Digita a quantidade de dias do aluguel'));
+      if (marcaEscolhida === Carroca.marca) {
+        Carroca.calcularAluguel(periodo);
+      } else if (marcaEscolhida === Motoca.marca) {
+        Motoca.calcularAluguel(periodo);
+      } else {
+        alert('Erro');
+      }
       break;
     case 2:
+      let periodoTotal = parseInt(
+        prompt('Digita a quantidade de dias do aluguel'),
+      );
+      local.calcularTotal(periodoTotal);
       break;
     case 3:
+      let marcaCarro = prompt('Digite a marca do carro para remover');
+      local.removerVeiculo(marcaCarro);
       break;
     default:
-      alert('Indisponível');
+      alert('Clique OK para sair');
   }
 });
